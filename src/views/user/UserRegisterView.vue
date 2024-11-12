@@ -8,17 +8,17 @@
       :model="form"
       @submit="handleSubmit"
     >
-      <a-form-item field="userAccount" label="账号">
+      <a-form-item field="userAccount" label="账号"  tooltip="账号不小于4位 全英文">
         <a-input v-model="form.userAccount" placeholder="请输入注册账号" />
       </a-form-item>
       <a-form-item
         field="userName"
-        tooltip="出现在网页的右上角"
+        tooltip="出现在网页的右上角 是您的标识"
         label="账号昵称"
       >
         <a-input v-model="form.userName" placeholder="请输入您的名称" />
       </a-form-item>
-      <a-form-item field="userPassword" tooltip="密码不少于 8 位" label="密码">
+      <a-form-item field="userPassword" tooltip="密码不少于6位" label="密码">
         <a-input-password
           v-model="form.userPassword"
           placeholder="请输入密码"
@@ -26,7 +26,7 @@
       </a-form-item>
       <a-form-item
         field="userPassword"
-        tooltip="密码不少于 8 位"
+        tooltip="确保两次输入的密码一致"
         label="确认密码"
       >
         <a-input-password
@@ -97,7 +97,7 @@ const handleSubmit = async () => {
   // 登录成功，跳转到主页
   if (res.code === 0) {
     // alert(res.message);
-    message.success("恭喜您注册成功！");
+    message.success("恭喜您注册成功!现在可以登录了!");
     await store.dispatch("user/getLoginUser");
     let baseResponseLoginUserVO;
     await UserControllerService.getLoginUserUsingGet();
