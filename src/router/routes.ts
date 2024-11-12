@@ -9,6 +9,7 @@ import QuestionsView from "@/views/question/QuestionsView.vue";
 import QuestionSubmitView from "@/views/question/QuestionSubmitView.vue";
 import ViewQuestionView from "@/views/question/ViewQuestionView.vue";
 import UserRegisterView from "@/views/user/UserRegisterView.vue";
+import UserForgetView from "@/views/user/UserForgetView.vue";
 
 export const routes: Array<RouteRecordRaw> = [
   {
@@ -20,6 +21,11 @@ export const routes: Array<RouteRecordRaw> = [
     path: "/register",
     name: "用户注册",
     component: UserRegisterView,
+  },
+  {
+    path: "/forget",
+    name: "重置密码",
+    component: UserForgetView,
   },
   {
     path: "/add/question",

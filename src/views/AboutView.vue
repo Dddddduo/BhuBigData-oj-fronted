@@ -5,7 +5,7 @@
       <h2>Our Team</h2>
       <img
         src="../assets/Bigdata.png"
-        alt="Team Photo"
+        alt="Forget Photo"
         style="width: 800px; height: auto; border: 2px solid #000"
       />
     </div>
