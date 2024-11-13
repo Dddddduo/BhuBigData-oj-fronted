@@ -23,13 +23,13 @@
                     tooltip="如果忘记了密码 可以通过邮箱找回"
                     label="邮箱"
             >
-                <a-input-password
+                <a-input
                         v-model="form.mail"
-                        placeholder="请输入密码"
+                        placeholder="请输入邮箱"
                 />
             </a-form-item>
             <a-form-item field="userPassword" tooltip="密码不少于 8 位" label="密码">
-                <a-input-password
+                <a-input
                         v-model="form.userPassword"
                         placeholder="请输入密码"
                 />
@@ -39,7 +39,7 @@
                     tooltip="密码不少于 8 位"
                     label="确认密码"
             >
-                <a-input-password
+                <a-input
                         v-model="form.checkPassword"
                         placeholder="请输入密码"
                 />
