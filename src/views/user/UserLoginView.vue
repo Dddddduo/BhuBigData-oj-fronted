@@ -27,6 +27,11 @@
         </div>
       </a-form-item>
     </a-form>
+      <img
+              src="../../assets/login.png"
+              alt="Forget photo"
+              style="width: 500px; height: auto; border: 2px solid #000"
+      />
   </div>
 </template>
 
