@@ -157,9 +157,7 @@ const handleSubmit = async () => {
 
 // 提交下表单
 const handleNewSubmit = async () => {
-
     const res = await UserControllerService.userUpdatePost(downform);
-
     if (res.code === 0) {
         message.success("重置密码成功！请牢记密码！")
         router.push({
@@ -169,7 +167,6 @@ const handleNewSubmit = async () => {
     } else {
         message.error("重置密码失败 "+res.message);
     }
-
 };
 
 // 处理按钮点击事件
