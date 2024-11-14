@@ -81,21 +81,14 @@ const handleSubmit = async () => {
   const res = await UserControllerService.userLoginUsingPost(form);
   console.log("得到登录的请求数据为",res);
 
-  // 获取的是登录信息
-  // const baseResponseLoginUserVO   =  await UserControllerService.getLoginUserUsingGet();
-  // console.log("得到的登录信息为",baseResponseLoginUserVO);
-
   if (res.code === 0) {
     message.success("恭喜您！登录成功！");
     await store.dispatch("user/getLoginUser");
     const baseResponseLoginUserVO   =  await UserControllerService.getLoginUserUsingGet();
     console.log(baseResponseLoginUserVO);
-    // 弹窗是Object
-    // alert(baseResponseLoginUserVO)
     ACCESS_ENUM.ADMIN
-    // 跳转路由
       router.push({
-        path: "/",
+        path: "/QuestionView",
         replace: true,
       });
   } else {

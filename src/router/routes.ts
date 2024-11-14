@@ -10,8 +10,14 @@ import QuestionSubmitView from "@/views/question/QuestionSubmitView.vue";
 import ViewQuestionView from "@/views/question/ViewQuestionView.vue";
 import UserRegisterView from "@/views/user/UserRegisterView.vue";
 import UserForgetView from "@/views/user/UserForgetView.vue";
+import HelloView from "@/views/HelloView.vue";
 
 export const routes: Array<RouteRecordRaw> = [
+  {
+    path: "/",
+    name: "主页公告",
+    component: HelloView,
+  },
   {
     path: "/login",
     name: "用户登录",
@@ -53,7 +59,7 @@ export const routes: Array<RouteRecordRaw> = [
     },
   },
   {
-    path: "/",
+    path: "/QuestionView",
     name: "浏览题目",
     component: QuestionsView,
   },
