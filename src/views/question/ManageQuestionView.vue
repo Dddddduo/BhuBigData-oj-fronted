@@ -38,7 +38,7 @@ const tableRef = ref();
 const dataList = ref([]);
 const total = ref(0);
 const searchParams = ref({
-  pageSize: 3,
+  pageSize: 10,
   current: 1,
 });
 
@@ -109,7 +109,7 @@ const columns = [
   },
   {
     title: "创建者",
-    dataIndex: "userId",
+    dataIndex: "userName",
   },
   {
     title: "创建时间",
@@ -142,7 +142,7 @@ const doDelete = async (question: Question) => {
       message.success("删除成功");
       loadData();
     } else {
-      message.error("删除失败");
+      message.error("删除失败,"+res.message);
     }
   }
 };

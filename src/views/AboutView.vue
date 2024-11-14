@@ -113,5 +113,11 @@
   list-style-type: disc;
   padding-left: 20px;
 }
+
+
+h1 {
+    font-size: 2.5rem;
+    color: #4CAF50;
+}
 </style>
 <script setup lang="ts"></script>

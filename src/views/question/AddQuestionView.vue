@@ -1,6 +1,6 @@
 <template>
   <div id="addQuestionView" style="max-width: 800px; margin: 0 auto">
-    <h2 style="margin-bottom: 16px">创建题目</h2>
+    <h2 style="margin-bottom: 16px">创建题目(使用MD格式书写)</h2>
 
     <a-form :model="form" label-align="left">
       <a-form-item label="标题">
