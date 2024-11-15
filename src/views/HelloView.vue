@@ -2,14 +2,15 @@
     <div class="container">
         <br>
         <header>
-            <h1>欢迎来到 OJ 判题系统</h1>
+            <h1>欢迎来到 OJ 判题系统  ʕ•͡ᴥ•ʔ ～</h1>
             <p class="subtitle">这是一个在线判题系统,提供Java编程题目练习和自动评测功能,所有的代码逻辑均属于自研,欢迎大家学习交流</p>
         </header>
 
         <section class="profile">
             <h2>关于我</h2>
+            <h3>“是你 抚去我迟迟不肯 我嶙峋的爱 茂若繁春”</h3>
             <ul>
-                <li><strong>姓名：</strong> Dduo</li>
+                <li><strong>姓名：</strong> Cute Puppy Dduo</li>
                 <li><strong>职业：</strong> 软件开发工程师</li>
                 <li><strong>技能：</strong> Vue.js,React,数据结构与算法,TypeScript,Java,SpringBoot,SpringCloud</li>
             </ul>
@@ -17,18 +18,19 @@
             <br>
 
             <p class="subtitle">注:本项目的所有业务已经在github上面开源,一套前端,三套后端</p>
+            <h3>“你好像在等十九世纪的青洄 可我是北纬67度以北的雪”</h3>
             <img src = 'https://s3.bmp.ovh/imgs/2024/11/14/9c663fa45ea43d97.jpg' >
-
             <br>
-            <ul>
-                <li><a href="http://gczdy.cn/" target="_blank">个人主页</a></li>
-                <li><a href="https://github.com/Dddddduo" target="_blank">GitHub 主页</a></li>
-                <li><a href="https://blog.csdn.net/qq_30500575" target="_blank">CSDN 主页</a></li>
+            <ul style="font-size: 30px;">
+                <li><a href="http://gczdy.cn/" target="_blank">个人主页(点击访问)</a></li>
+                <li><a href="https://github.com/Dddddduo" target="_blank">GitHub主页(点击访问)</a></li>
+                <li><a href="https://blog.csdn.net/qq_30500575" target="_blank">CSDN主页(点击访问)</a></li>
             </ul>
         </section>
 
         <section class="updates">
             <h2>开发日志</h2>
+            <h3>“我作堪堪破雪的绝句 你答濯濯不朽晓山青”</h3>
             <p>最新的更新和改进：</p>
             <ul>
                 <li><strong>2024年11月：</strong> 编写复杂接口,如邮箱找回密码,登录校验</li>
@@ -74,6 +76,12 @@ header {
 h1 {
     font-size: 2.5rem;
     color: #4CAF50;
+}
+
+h3 {
+    font-size: 2.5rem;
+    color: #eaa9dc;
+    font-family: 'STXingkai';
 }
 
 .subtitle {
