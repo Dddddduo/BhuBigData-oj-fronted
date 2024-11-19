@@ -1,9 +1,12 @@
 <template>
   <div id="questionSubmitView">
+
     <a-form :model="searchParams" layout="inline">
+
       <a-form-item field="questionId" label="题号" style="min-width: 240px">
         <a-input v-model="searchParams.questionId" placeholder="请输入" />
       </a-form-item>
+
       <a-form-item field="language" label="编程语言" style="min-width: 240px">
         <a-select
           v-model="searchParams.language"
@@ -11,16 +14,22 @@
           placeholder="选择编程语言"
         >
           <a-option>java</a-option>
-          <a-option>cpp</a-option>
-          <a-option>go</a-option>
-          <a-option>html</a-option>
+          <a-option>其他</a-option>
         </a-select>
       </a-form-item>
+
+      <a-form-item field="userName" label="提交者" style="min-width: 240px">
+        <a-input v-model="searchParams.userName" placeholder="请输入" />
+      </a-form-item>
+
       <a-form-item>
         <a-button type="primary" @click="doSubmit">搜索</a-button>
       </a-form-item>
+
     </a-form>
+
     <a-divider size="0" />
+
     <a-table
       :ref="tableRef"
       :columns="columns"
@@ -33,13 +42,39 @@
       }"
       @page-change="onPageChange"
     >
+
+      <!-- 判题信息 -->
       <template #judgeInfo="{ record }">
-        {{ JSON.stringify(record.judgeInfo) }}
+        <div>
+          <div><b>Message:</b> {{ record.judgeInfo.message || '未知' }}</div>
+          <div><b>Memory Limit:</b> {{ record.judgeInfo.memoryLimit || '未知' }}</div>
+          <div><b>Time:</b> {{ record.judgeInfo.time || '未知' }}</div>
+        </div>
       </template>
+
+      <!-- 展示的是提交时间  -->
       <template #createTime="{ record }">
         {{ moment(record.createTime).format("YYYY-MM-DD") }}
       </template>
+
+      <!-- 展示点击就能直接访问题目 -->
+      <template #questionId="{ record }">
+        <router-link :to="'/view/question/' + record.questionId">
+          {{ record.questionId }}
+        </router-link>
+      </template>
+
+      <!-- 修改这里，展示判题状态 -->
+      <template #status="{ record }">
+        <span v-if="record.status === 0">待判题</span>
+        <span v-else-if="record.status === 1">判题中</span>
+        <span v-else-if="record.status === 2">成功</span>
+        <span v-else-if="record.status === 3">失败</span>
+        <span v-else>未知状态</span>
+      </template>
+
     </a-table>
+
   </div>
 </template>
 
@@ -55,9 +90,9 @@ import { useRouter } from "vue-router";
 import moment from "moment";
 
 const tableRef = ref();
-
 const dataList = ref([]);
 const total = ref(0);
+
 const searchParams = ref<QuestionSubmitQueryRequest>({
   questionId: undefined,
   language: undefined,
@@ -66,6 +101,7 @@ const searchParams = ref<QuestionSubmitQueryRequest>({
 });
 
 const loadData = async () => {
+
   const res = await QuestionControllerService.listQuestionSubmitByPageUsingPost(
     {
       ...searchParams.value,
@@ -73,6 +109,7 @@ const loadData = async () => {
       sortOrder: "descend",
     }
   );
+
   if (res.code === 0) {
     dataList.value = res.data.records;
     total.value = res.data.total;
@@ -81,23 +118,17 @@ const loadData = async () => {
   }
 };
 
-/**
- * 监听 searchParams 变量，改变时触发页面的重新加载
- */
 watchEffect(() => {
   loadData();
 });
 
-/**
- * 页面加载时，请求数据
- */
 onMounted(() => {
   loadData();
 });
 
 const columns = [
   {
-    title: "提交号",
+    title: "提交编号(不是题号)",
     dataIndex: "id",
   },
   {
@@ -110,18 +141,19 @@ const columns = [
   },
   {
     title: "判题状态",
-    dataIndex: "status",
+    slotName: "status", // 修改此行，指向自定义的status插槽
   },
   {
-    title: "题目 id",
-    dataIndex: "questionId",
+    title: "题号",
+    slotName: "questionId",
   },
   {
-    title: "提交者 id",
-    dataIndex: "userId",
+    title: "提交者",
+    dataIndex: "userName",
+
   },
   {
-    title: "创建时间",
+    title: "提交时间",
     slotName: "createTime",
   },
 ];
@@ -135,21 +167,13 @@ const onPageChange = (page: number) => {
 
 const router = useRouter();
 
-/**
- * 跳转到做题页面
- * @param question
- */
 const toQuestionPage = (question: Question) => {
   router.push({
     path: `/view/question/${question.id}`,
   });
 };
 
-/**
- * 确认搜索，重新加载数据
- */
 const doSubmit = () => {
-  // 这里需要重置搜索页号
   searchParams.value = {
     ...searchParams.value,
     current: 1,
@@ -159,7 +183,7 @@ const doSubmit = () => {
 
 <style scoped>
 #questionSubmitView {
-  max-width: 1280px;
-  margin: 0 auto;
+    max-width: 1280px;
+    margin: 0 auto;
 }
 </style>

@@ -37,7 +37,9 @@
                 </a-tabs>
             </a-col>
             <a-col :md="12" :xs="24">
-                <a-form :model="form" layout="inline">
+                <a-form
+                  :model="form"
+                  layout="inline">
                     <a-form-item
                             field="language"
                             label="编程语言"
@@ -49,6 +51,7 @@
                                 placeholder="选择编程语言"
                         >
                             <a-option>java</a-option>
+                            <a-option>(目前未开放其他语言判题逻辑 只适配Java)</a-option>
                         </a-select>
                     </a-form-item>
                 </a-form>
@@ -59,9 +62,17 @@
                     style="text-align: justify"
                 />
                 <a-divider size="0"/>
-                <a-button type="primary" style="min-width: 200px" @click="doSubmit">
-                    提交代码
+
+                <a-button
+                        type="primary"
+                        style="min-width: 200px"
+                        @click="doSubmit"
+                        :loading="isButtonLoading"
+                        :disabled="isButtonDisabled"
+                >
+                    {{ isButtonDisabled ? countdown + '秒后再试' : '提交代码' }}
                 </a-button>
+
             </a-col>
         </a-row>
     </div>
@@ -78,6 +89,7 @@ import {
     QuestionSubmitAddRequest,
     QuestionVO,
 } from "../../../generated";
+import { useRouter } from "vue-router";
 
 interface Props {
     id: string;
@@ -88,6 +100,13 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const question = ref<QuestionVO>();
+
+// 按钮的状态
+const isButtonLoading = ref(false);
+const isButtonDisabled = ref(false);
+// 时间
+const countdown = ref(0);
+const router = useRouter();
 
 const loadData = async () => {
     const res = await QuestionControllerService.getQuestionVoByIdUsingGet(
@@ -109,8 +128,7 @@ const form = ref<QuestionSubmitAddRequest>({
  * 提交代码
  */
 const doSubmit = async () => {
-    // message.error("刷题机架构尚未完成");
-    // console.log("尚未完善");
+    handleButtonClick();
     if (!question.value?.id) {
         return;
     }
@@ -122,6 +140,10 @@ const doSubmit = async () => {
     console.log(res.code);
     if (res.code === 0) {
         message.success("提交成功");
+        router.push({
+            path: "/QuestionSubmitView",
+            replace: true,
+        });
     } else {
         message.error("提交失败," + res.message);
     }
@@ -133,6 +155,20 @@ const doSubmit = async () => {
 onMounted(() => {
     loadData();
 });
+
+// 处理按钮点击事件
+const handleButtonClick = () => {
+    // 禁用按钮并开始倒计时
+    isButtonDisabled.value = true;
+    countdown.value = 10;
+    const interval = setInterval(() => {
+        countdown.value -= 1;
+        if (countdown.value <= 0) {
+            clearInterval(interval);
+            isButtonDisabled.value = false;
+        }
+    }, 1000);
+};
 
 const changeCode = (value: string) => {
     form.value.code = value;
