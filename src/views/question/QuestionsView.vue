@@ -38,9 +38,11 @@
           }% (${record.acceptedNum}/${record.submitNum})`
         }}
       </template>
+
       <template #createTime="{ record }">
         {{ moment(record.createTime).format("YYYY-MM-DD") }}
       </template>
+
       <template #optional="{ record }">
         <a-space>
           <a-button type="primary" @click="toQuestionPage(record)">

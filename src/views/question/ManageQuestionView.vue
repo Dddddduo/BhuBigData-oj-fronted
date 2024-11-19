@@ -12,6 +12,12 @@
       }"
       @page-change="onPageChange"
     >
+
+      <!-- 展示的是提交时间  -->
+      <template #createTime="{ record }">
+        {{ moment(record.createTime).format("YYYY-MM-DD") }}
+      </template>
+
       <template #optional="{ record }">
         <a-space>
           <a-button type="primary" @click="doUpdate(record)"> 修改</a-button>
@@ -32,6 +38,7 @@ import {
 import message from "@arco-design/web-vue/es/message";
 import * as querystring from "querystring";
 import { useRouter } from "vue-router";
+import moment from "moment/moment";
 
 const tableRef = ref();
 
@@ -82,6 +89,7 @@ const columns = [
   {
     title: "内容",
     dataIndex: "content",
+    width: 300
   },
   {
     title: "标签",
@@ -106,6 +114,7 @@ const columns = [
   {
     title: "判题用例",
     dataIndex: "judgeCase",
+    width: 200
   },
   {
     title: "创建者",
@@ -113,7 +122,7 @@ const columns = [
   },
   {
     title: "创建时间",
-    dataIndex: "createTime",
+    slotName: "createTime",
   },
   {
     title: "操作",
