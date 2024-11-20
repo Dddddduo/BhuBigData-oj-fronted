@@ -19,7 +19,9 @@
                                     {{ question.judgeConfig.stackLimit ?? 0 }}
                                 </a-descriptions-item>
                             </a-descriptions>
+
                             <MdViewer :value="question.content || ''"/>
+
                             <template #extra>
                                 <a-space wrap>
                                     <a-tag
@@ -55,23 +57,40 @@
                         </a-select>
                     </a-form-item>
                 </a-form>
+
                 <CodeEditor
                     :value="form.code as string"
                     :language="form.language"
                     :handle-change="changeCode"
                     style="text-align: justify"
                 />
+
                 <a-divider size="0"/>
 
-                <a-button
-                        type="primary"
-                        style="min-width: 200px"
-                        @click="doSubmit"
-                        :loading="isButtonLoading"
-                        :disabled="isButtonDisabled"
-                >
-                    {{ isButtonDisabled ? countdown + '秒后再试' : '提交代码' }}
-                </a-button>
+                <div>
+                    <a-button
+                      type="primary"
+                      style="min-width: 200px"
+                      @click="doSubmit"
+                      :loading="isButtonLoading"
+                      :disabled="isButtonDisabled"
+                    >
+                        {{ isButtonDisabled ? countdown + '秒后再试' : '提交代码' }}
+                    </a-button>
+                </div>
+
+                <div>
+                    <br>
+                </div>
+
+                <div>
+                    <a-button
+                      type="primary"
+                      @click="toQuestionSubmitView"
+                    >
+                        点击我跳转到题目提交列表
+                    </a-button>
+                </div>
 
             </a-col>
         </a-row>
@@ -148,6 +167,14 @@ const doSubmit = async () => {
         message.error("提交失败," + res.message);
     }
 };
+
+const toQuestionSubmitView = async () =>{
+    // 跳转到题目提交列表
+    router.push({
+        path: "/QuestionSubmitView",
+        replace: true,
+    });
+}
 
 /**
  * 页面加载时，请求数据

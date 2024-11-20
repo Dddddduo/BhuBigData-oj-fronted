@@ -1,16 +1,22 @@
 <template>
   <div id="questionsView">
+
     <a-form :model="searchParams" layout="inline">
+
       <a-form-item field="title" label="题目名称" style="min-width: 240px">
         <a-input v-model="searchParams.title" placeholder="请输入名称" />
       </a-form-item>
+
       <a-form-item field="tags" label="标签" style="min-width: 240px">
         <a-input-tag v-model="searchParams.tags" placeholder="请输入标签" />
       </a-form-item>
+
       <a-form-item>
         <a-button type="primary" @click="doSubmit">提交</a-button>
       </a-form-item>
+
     </a-form>
+
     <a-divider size="0" />
     <a-table
       :ref="tableRef"
@@ -31,6 +37,7 @@
           </a-tag>
         </a-space>
       </template>
+
       <template #acceptedRate="{ record }">
         {{
           `${
@@ -50,6 +57,7 @@
           </a-button>
         </a-space>
       </template>
+
     </a-table>
   </div>
 </template>
@@ -79,8 +87,9 @@ const searchParams = ref<QuestionQueryRequest>({
 });
 
 const loadData = async () => {
-  const res = await QuestionControllerService.listQuestionVoByPageUsingPost(
-    searchParams.value
+  const res = await QuestionControllerService.listQuestionVoByPageUsingPost({
+    ...searchParams.value,
+    }
   );
   if (res.code === 0) {
     dataList.value = res.data.records;
