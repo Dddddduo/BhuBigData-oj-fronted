@@ -21,15 +21,12 @@
       <a-form-item field="userName" label="提交者" style="min-width: 240px">
         <a-input v-model="searchParams.userName" placeholder="请输入" />
       </a-form-item>
-
-      <a-form-item>
-        <a-button type="primary" @click="doSubmit">搜索</a-button>
-      </a-form-item>
-
+<!--      <a-form-item>-->
+<!--        <a-button type="primary" @click="doSubmit">搜索</a-button>-->
+<!--      </a-form-item>-->
     </a-form>
 
     <a-divider size="0" />
-
     <a-table
       :ref="tableRef"
       :columns="columns"
@@ -95,13 +92,13 @@ const total = ref(0);
 
 const searchParams = ref<QuestionSubmitQueryRequest>({
   questionId: undefined,
-  language: undefined,
+  language: "",
+  userName: "",
   pageSize: 10,
   current: 1,
 });
 
 const loadData = async () => {
-
   const res = await QuestionControllerService.listQuestionSubmitByPageUsingPost(
     {
       ...searchParams.value,
@@ -118,6 +115,7 @@ const loadData = async () => {
   }
 };
 
+// 当组件中的任何输入发生变化的时候 watchEffect都会重新执行
 watchEffect(() => {
   loadData();
 });
@@ -173,12 +171,12 @@ const toQuestionPage = (question: Question) => {
   });
 };
 
-const doSubmit = () => {
-  searchParams.value = {
-    ...searchParams.value,
-    current: 1,
-  };
-};
+// const doSubmit = () => {
+//   searchParams.value = {
+//     ...searchParams.value,
+//     current: 1,
+//   };
+// };
 </script>
 
 <style scoped>
