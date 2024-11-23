@@ -65,8 +65,11 @@
       <template #status="{ record }">
         <span v-if="record.status === 0">待判题</span>
         <span v-else-if="record.status === 1">判题中</span>
-        <span v-else-if="record.status === 2">成功</span>
-        <span v-else-if="record.status === 3">失败</span>
+        <span v-else-if="record.status === 2">编译错误</span>
+        <span v-else-if="record.status === 3">时间超限</span>
+        <span v-else-if="record.status === 4">内存超限</span>
+        <span v-else-if="record.status === 5">答案错误</span>
+        <span v-else-if="record.status === 6">答案正确</span>
         <span v-else>未知状态</span>
       </template>
 
