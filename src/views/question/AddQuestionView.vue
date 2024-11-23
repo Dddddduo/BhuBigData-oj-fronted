@@ -118,7 +118,6 @@ const route = useRoute();
 const router = useRouter();
 // 如果页面地址包含 update，视为更新页面
 
-//123
 const updatePage = route.path.includes("update");
 
 let form = ref({
