@@ -159,10 +159,10 @@ const doSubmit = async () => {
     console.log(res.code);
     if (res.code === 0) {
         message.success("提交成功");
-        router.push({
-            path: "/QuestionSubmitView",
-            replace: true,
-        });
+        // router.push({
+        //     path: "/QuestionSubmitView",
+        //     replace: true,
+        // });
     } else {
         message.error("提交失败," + res.message);
     }
