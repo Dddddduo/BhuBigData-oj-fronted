@@ -41,10 +41,13 @@
       <template #acceptedRate="{ record }">
         {{
           `${
-            record.submitNum ? record.acceptedNum / record.submitNum * 100 : "0"
+            record.submitNum
+              ? (record.acceptedNum / record.submitNum * 100).toFixed(3)
+              : "0.000"
           }% (${record.acceptedNum}/${record.submitNum})`
         }}
       </template>
+
 
       <template #createTime="{ record }">
         {{ moment(record.createTime).format("YYYY-MM-DD") }}
