@@ -118,7 +118,20 @@ onMounted(() => {
   }
   // Hover on each property to see its docs!
   codeEditor.value = monaco.editor.create(codeEditorRef.value, {
-    value: props.value,
+    value: `import java.util.*;
+// 本代码沙箱版权由多多所有
+// OpenJDK 1.8
+// 按住ctrl键点击下方网页可访问个人主页
+// http://gczdy.cn
+public class Main {
+    static Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) {
+        // 在这边填写你的代码
+
+
+    	sc.close();
+    }
+}`,
     // language: props.language,
     language: props.language,
     automaticLayout: false,
