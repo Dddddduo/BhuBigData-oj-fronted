@@ -51,7 +51,7 @@
 
       <!-- 展示的是提交时间  -->
       <template #createTime="{ record }">
-        {{ moment(record.createTime).format("YYYY-MM-DD") }}
+        {{ moment(record.createTime).format("YYYY-MM-DD HH:mm:ss") }}
       </template>
 
       <!-- 展示点击就能直接访问题目 -->
@@ -65,11 +65,7 @@
       <template #status="{ record }">
         <span v-if="record.status === 0">待判题</span>
         <span v-else-if="record.status === 1">判题中</span>
-        <span v-else-if="record.status === 2">编译错误</span>
-        <span v-else-if="record.status === 3">时间超限</span>
-        <span v-else-if="record.status === 4">内存超限</span>
-        <span v-else-if="record.status === 5">答案错误</span>
-        <span v-else-if="record.status === 6">答案正确</span>
+        <span v-else-if="record.status === 2">判题成功</span>
         <span v-else>未知状态</span>
       </template>
 

@@ -41,7 +41,7 @@
       <template #acceptedRate="{ record }">
         {{
           `${
-            record.submitNum ? record.acceptedNum / record.submitNum : "0"
+            record.submitNum ? record.acceptedNum / record.submitNum * 100 : "0"
           }% (${record.acceptedNum}/${record.submitNum})`
         }}
       </template>

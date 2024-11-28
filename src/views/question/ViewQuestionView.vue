@@ -148,17 +148,25 @@ const form = ref<QuestionSubmitAddRequest>({
  */
 const doSubmit = async () => {
     handleButtonClick();
+
+    console.log("问题的id"+question.value?.id);
+
     if (!question.value?.id) {
         return;
     }
+
+    console.log("进行了提交");
 
     const res = await QuestionControllerService.doQuestionSubmitUsingPost({
         ...form.value,
         questionId: question.value.id,
     });
+
     console.log(res.code);
+
     if (res.code === 0) {
         message.success("提交成功");
+        // 不用进行页面的跳转
         // router.push({
         //     path: "/QuestionSubmitView",
         //     replace: true,
