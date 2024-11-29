@@ -31,12 +31,26 @@
         <section class="updates">
             <h2>开发日志</h2>
             <h3>“我作堪堪破雪的绝句 你答濯濯不朽晓山青”</h3>
-            <p>最新的更新和改进：</p>
+            <p>最新的更新：</p>
             <ul>
+                <li><strong>2024年12月：</strong> 跑通代码沙箱 成功部署上线</li>
                 <li><strong>2024年11月：</strong> 编写复杂接口,如邮箱找回密码,登录校验</li>
                 <li><strong>2024年10月：</strong> 进行了增删改查接口的调试,并且美化了页面</li>
                 <li><strong>2024年9月：</strong> 进行简单的测试,编写开发文档</li>
                 <li><strong>2024年8月：</strong> 项目初始化,成功前后端联调，开放用户体验</li>
+            </ul>
+        </section>
+
+        <section class="updates">
+            <h2>BUG修复日志</h2>
+            <h3>“我想我会慢慢喜欢你 因为我拥有爱情的勇气”</h3>
+            <p>遗留问题：</p>
+            <ul>
+                <li><strong>运维：</strong><span style="">在Linux部署上线时拿不到终端的输入输出流 导致判题一直时WA</span></li>
+                <li><strong>后端：</strong><span style="text-decoration: line-through;">问题提交表数据迁移失败</span></li>
+                <li><strong>后端：</strong><span style="text-decoration: line-through;">前后端存在跨域 登录校验session时报错</span></li>
+                <li><strong>前端：</strong><span style="text-decoration: line-through;">OpenApi调用接口访问有问题</span></li>
+                <li><strong>前端：</strong><span style="text-decoration: line-through;">Editor Coder组件总是只显示半边内容</span></li>
             </ul>
         </section>
 
@@ -63,9 +77,12 @@ body {
 }
 
 .container {
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
     padding: 20px;
+    background-image: url('https://s3.bmp.ovh/imgs/2024/11/29/cd920fc8c47f83be.jpg');
+    background-size: contain;
+    background-repeat: no-repeat; /* 防止图片重复 */
 }
 
 header {
